@@ -1,0 +1,57 @@
+version: '2.3'
+services:
+  nginx:
+    build: ./nginx
+    ports:
+      - 8000:80
+    depends_on:
+      - keystone
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+  zookeeper:
+    image: debezium/zookeeper:${DEBEZIUM_VERSION}
+    ports:
+     - 2181:2181
+     - 2888:2888
+     - 3888:3888
+  kafka:
+    image: debezium/kafka:${DEBEZIUM_VERSION}
+    ports:
+     - 9092:9092
+    links:
+     - zookeeper
+    environment:
+     - ZOOKEEPER_CONNECT=zookeeper:2181      
+  mongodb:
+    build: ./mongodb
+    hostname: mongodb
+    ports:
+     - 27017:27017
+    environment:
+     - MONGODB_USER=keystone
+     - MONGODB_PASSWORD=keystone
+  keystone:
+    build: ./keystone
+    scale: 3
+    volumes: 
+      - ./keystone/keystone.js:/usr/src/app/keystone.js
+      - ./keystone/.env:/usr/src/app/.env
+      - ./keystone/models:/usr/src/app/models
+      - ./keystone/public:/usr/src/app/public
+      - ./keystone/routes:/usr/src/app/routes
+      - ./keystone/templates:/usr/src/app/templates
+      - ./keystone/updates:/usr/src/app/updates
+    links:
+      - mongodb
+  connect:
+    image: debezium/connect:${DEBEZIUM_VERSION}
+    ports:
+     - 8083:8083
+    links:
+     - kafka
+     - mongodb
+    environment:
+     - BOOTSTRAP_SERVERS=kafka:9092
+     - GROUP_ID=1
+     - CONFIG_STORAGE_TOPIC=my_connect_configs
+     - OFFSET_STORAGE_TOPIC=my_connect_offsets      
