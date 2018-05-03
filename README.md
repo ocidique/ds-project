@@ -40,4 +40,6 @@ docker-compose exec kafka /kafka/bin/kafka-console-consumer.sh \
     --property print.key=true \
     --topic dbserver1.keystone.posts
     
+# Shut down the cluster
+docker-compose down
 ```
