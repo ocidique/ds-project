@@ -3,13 +3,13 @@
 
 ### Dockerized
 
-- [ ] Nginx
-- [ ] KeystoneJS
+- [X] Nginx
+- [X] KeystoneJS
 - [ ] Consumer App
-- [ ] Zookeeper
-- [ ] Kafka
-- [ ] MongoDB
-- [ ] Kafka Connect
+- [X] Zookeeper
+- [X] Kafka
+- [X] MongoDB
+- [X] Kafka Connect
 
 ### Brief description
 
