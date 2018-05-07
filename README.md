@@ -13,7 +13,7 @@
 
 ### Motivation
 
-Modern web services are getting larger and there's a need for modern solutions to ease development, delivery and integration. Kafka streaming platform works great as core system for exchanging messages between different web services. Docker helps to build, ship, and run distributed applications in modern way.
+Web services are getting larger and there's a need for modern solutions to ease development, delivery and integration. Kafka streaming platform works great as core system for exchanging messages between different web services. Docker helps to build, ship, and run distributed applications in modern way.
 
 ### Brief description
 
