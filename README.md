@@ -22,9 +22,9 @@ Basic idea is that KeystoneJS Apps will work as Kafka producers via Kafka Connec
 ### Usage, read through phases first
 ```
 # Keystone CMS needs to have dotenv variables set
-mv .env_example .env
+cp .env_example .env
 
-# Create account for https://cloudinary.com/ which is required for CMS image hosting
+# Create account for https://cloudinary.com/ which is required for Keystone to run and for CMS image hosting
 # Add your Cloudinary credentials to your .env 
 
 # Using Debezium 0.7 version for the project, add export variable, or to your bash profile and restart terminal window for bash profile reload
