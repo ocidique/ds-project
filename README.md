@@ -43,7 +43,7 @@ docker-compose exec mongodb bash -c '/usr/local/bin/init-keystone.sh'
 # After all docker applications are running start MongoDB Kafka connector
 curl -i -X POST -H "Accept:application/json" -H  "Content-Type:application/json" http://localhost:8083/connectors/ -d @register-mongodb.json
 
-# To test Keystone CMS, go to localhost:8000
+# To test Keystone CMS, go to localhost:8000 and login with provided credentials in the demo
 
 # To test consuming messages from a Keystone topic, e.g. posts
 docker-compose exec kafka /kafka/bin/kafka-console-consumer.sh \
